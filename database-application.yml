@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd-database
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: 'https://github.com/toannd135/btl-shoeshop-database.git'
+      targetRevision: HEAD
+      path: 'database-chart'
+      helm:
+        valueFiles:
+          - values.yaml
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: typ-lab-final
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
