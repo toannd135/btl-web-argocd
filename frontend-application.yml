@@ -1,20 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd-database
+  name: argocd-frontend
   namespace: argocd
 spec:
   project: default
   sources:
-    - repoURL: 'https://github.com/toannd135/btl-shoeshop-database.git'
+    - repoURL: 'https://github.com/toannd135/btl-shoeshop-frontend.git'
       targetRevision: HEAD
-      path: 'database-chart'
+      path: 'frontend-chart'
       helm:
         valueFiles:
           - values.yaml
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: shoeshop-web
+    namespace: shoeshop-app
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
