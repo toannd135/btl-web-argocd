@@ -14,7 +14,7 @@ spec:
           - values.yaml
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: shoeshop-infa
+    namespace: shoeshop-data
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
